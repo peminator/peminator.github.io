@@ -81,6 +81,8 @@
 			a.abtn:hover {
 				filter: saturate(110%);
 			}
+			.qrbtn { width: 2em; }
+			.qrbtn.big { width: 200px; }
 		</style>
 	</head>
 	<body>
@@ -98,11 +100,16 @@
 			<span class="sub"> Living in Piestany, Slovakia </span>
 
 			<span class="sub bld"><br><br>Buy me a coffer maybe?
+				<br>
 				<a target="_blank" 
 					class="abtn"
 					href="https://www.paypal.com/donate/?business=VMGJ25KTWY3HE&no_recurring=1&item_name=Say+thanks%2C+or+just+surprise+me%21+%0AEvery+bit+counts%21+&currency_code=EUR">
 					&raquo; PayPal
 				</a>
+				<br><br>
+				<img src="/paypalDonateQR.png" title='donate payapl qr code' class="qrbtn"
+					onclick="this.classList.toggle('big')"
+				/>
 			
 			</span>
 		</span>
