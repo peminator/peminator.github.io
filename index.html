@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peter Mikuš (PeMiNator) | Full-Stack Web Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-color: #030712;
+        --card-bg: rgba(15, 23, 42, 0.75);
+        --border-color: rgba(255, 255, 255, 0.1);
+        --text-main: #f0f6fc;
+        --text-muted: #94a3b8;
+        --accent: #238636;
+        --accent-hover: #2ea043;
+        --link-color: #38bdf8;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        font-family:
+          "Plus Jakarta Sans",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        position: relative;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* --- LARGE GLOWING ANIMATED BACKGROUND ORBS --- */
+      .glow-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        z-index: -1;
+        pointer-events: none;
+        filter: blur(80px);
+      }
+
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.55;
+        animation: orbFloat 12s ease-in-out infinite alternate;
+      }
+
+      .orb-1 {
+        width: 45vw;
+        height: 45vw;
+        background: #ec4899; /* Bright Pink */
+        top: -15vw;
+        left: -10vw;
+        animation-duration: 14s;
+      }
+
+      .orb-2 {
+        width: 50vw;
+        height: 50vw;
+        background: #3b82f6; /* Bright Blue */
+        bottom: -20vw;
+        right: -10vw;
+        animation-duration: 18s;
+        animation-delay: -3s;
+      }
+
+      .orb-3 {
+        width: 35vw;
+        height: 35vw;
+        background: #8b5cf6; /* Vibrant Purple */
+        top: 30vh;
+        left: 30vw;
+        animation-duration: 10s;
+        animation-delay: -6s;
+        opacity: 0.4;
+      }
+
+      @keyframes orbFloat {
+        0% {
+          transform: translate(0px, 0px) scale(1);
+        }
+        50% {
+          transform: translate(60px, 40px) scale(1.15);
+        }
+        100% {
+          transform: translate(-40px, -50px) scale(0.95);
+        }
+      }
+
+      /* --- PROFILE CARD --- */
+      .profile-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid var(--border-color);
+        border-radius: 24px;
+        width: 100%;
+        max-width: 760px;
+        padding: 48px;
+        box-shadow:
+          0 25px 60px rgba(0, 0, 0, 0.8),
+          inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        position: relative;
+        z-index: 1;
+        animation: cardEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      @keyframes cardEntrance {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .profile-card:hover {
+        border-color: rgba(56, 189, 248, 0.4);
+        box-shadow:
+          0 30px 80px rgba(0, 0, 0, 0.9),
+          0 0 40px rgba(56, 189, 248, 0.25);
+        transform: translateY(-2px);
+        transition: all 0.3s ease;
+      }
+
+      header {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 28px;
+        margin-bottom: 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .identity h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #ffffff;
+        letter-spacing: -0.03em;
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .handle {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.95rem;
+        color: var(--link-color);
+        font-weight: 600;
+        opacity: 0.9;
+      }
+
+      .wave-emoji {
+        display: inline-block;
+        transition: transform 0.3s ease;
+        transform-origin: bottom center;
+      }
+
+      h1:hover .wave-emoji {
+        animation: waveAnimation 0.7s ease infinite;
+      }
+
+      @keyframes waveAnimation {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(15deg);
+        }
+        75% {
+          transform: rotate(-10deg);
+        }
+      }
+
+      .tagline {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        font-weight: 400;
+        margin-top: 8px;
+        letter-spacing: -0.01em;
+      }
+
+      .location-badge {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border-color);
+        padding: 8px 14px;
+        border-radius: 30px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        backdrop-filter: blur(5px);
+      }
+
+      .section-title {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-muted);
+        margin-bottom: 14px;
+        font-weight: 700;
+      }
+
+      .info-block {
+        margin-bottom: 32px;
+        font-size: 1.02rem;
+        line-height: 1.7;
+        color: #cbd5e1;
+      }
+
+      .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .badge {
+        background-color: rgba(56, 189, 248, 0.1);
+        color: var(--link-color);
+        border: 1px solid rgba(56, 189, 248, 0.25);
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        font-family: "JetBrains Mono", monospace;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        cursor: default;
+      }
+
+      .badge.highlight {
+        background-color: rgba(35, 134, 54, 0.2);
+        color: #4ade80;
+        border-color: rgba(35, 134, 54, 0.5);
+      }
+
+      .badge:hover {
+        background-color: rgba(56, 189, 248, 0.25);
+        border-color: rgba(56, 189, 248, 0.6);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+      }
+
+      .badge.highlight:hover {
+        background-color: rgba(35, 134, 54, 0.3);
+        border-color: rgba(35, 134, 54, 0.7);
+        box-shadow: 0 4px 12px rgba(35, 134, 54, 0.25);
+      }
+
+      .footer-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid var(--border-color);
+        padding-top: 28px;
+        margin-top: 12px;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 12px 20px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 700;
+        transition: all 0.25s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-kofi {
+        background-color: var(--accent);
+        color: #ffffff;
+        box-shadow: 0 4px 14px rgba(35, 134, 54, 0.3);
+      }
+
+      .btn-kofi:hover {
+        background-color: var(--accent-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(35, 134, 54, 0.45);
+      }
+
+      .btn-ig {
+        background: linear-gradient(
+          45deg,
+          #f09433,
+          #e6683c,
+          #dc2743,
+          #cc2366,
+          #bc1888
+        );
+        color: #ffffff;
+        box-shadow: 0 4px 14px rgba(220, 39, 67, 0.3);
+      }
+
+      .btn-ig:hover {
+        filter: brightness(1.1);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(220, 39, 67, 0.45);
+      }
+
+      @media (max-width: 640px) {
+        .profile-card {
+          padding: 28px;
+        }
+        .identity h1 {
+          font-size: 2rem;
+        }
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .footer-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .action-buttons {
+          flex-direction: column;
+          width: 100%;
+        }
+        .btn {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="glow-container">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <main class="profile-card">
+      <header>
+        <div class="identity">
+          <h1>Peter Mikuš <span class="wave-emoji">👋</span></h1>
+          <div class="handle">@peminator</div>
+          <div class="tagline">
+            Full-Stack Web Developer &amp; Software Engineer
+          </div>
+        </div>
+        <div class="location-badge">📍 Piešťany, Slovakia</div>
+      </header>
+
+      <section class="info-block">
+        <div class="section-title">Background</div>
+        <p>
+          Coding and building software solutions since 1994. Deep expertise in
+          custom application architecture, enterprise integrations, and robust
+          infrastructure management.
+        </p>
+      </section>
+
+      <section class="info-block">
+        <div class="section-title">Core Expertise &amp; Stack</div>
+        <div class="skills-grid">
+          <span class="badge highlight">Website development</span>
+          <span class="badge">PHP</span>
+          <span class="badge">Nette Framework</span>
+          <span class="badge">Vue.js</span>
+          <span class="badge">JavaScript / jQuery</span>
+          <span class="badge">Node.js</span>
+          <span class="badge">Electron Apps</span>
+          <span class="badge">WP Custom Themes &amp; Plugins</span>
+          <span class="badge">Mass Mailing &amp; Templating</span>
+          <span class="badge">MySQL &amp; Databases</span>
+          <span class="badge">Docker &amp; WSL</span>
+          <span class="badge">Intranet Custom Apps</span>
+          <span class="badge">Network Management</span>
+          <span class="badge">Linux Servers</span>
+          <span class="badge">REST APIs</span>
+        </div>
+      </section>
+
+      <footer class="footer-actions">
+        <div style="font-size: 0.9rem; color: var(--text-muted)">
+          Open for projects &amp; collaboration
+        </div>
+        <div class="action-buttons">
+          <a
+            class="btn btn-ig"
+            href="http://instagram.com/peminatorx"
+            target="_blank"
+            rel="noopener"
+          >
+            💬 Msg me on IG
+          </a>
+          <a
+            class="btn btn-kofi"
+            href="https://ko-fi.com/peminator"
+            target="_blank"
+            rel="noopener"
+          >
+            ☕ Buy me a coffee
+          </a>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
